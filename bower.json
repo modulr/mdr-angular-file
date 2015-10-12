@@ -1,0 +1,30 @@
+{
+  "name": "upload",
+  "version": "1.0.0",
+  "authors": [
+    "Alfredo Barron <alfredobarronc@gmail.com>"
+  ],
+  "description": "Angular + Bootstrap File Upload Drag and Drop",
+  "main": "app.js",
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "file",
+    "upload",
+    "draganddrop",
+    "directive",
+    "component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.7"
+  }
+}
