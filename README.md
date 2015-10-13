@@ -5,7 +5,7 @@ Angular + Bootstrap File Upload Drag and Drop
 
  - [Quick start](#quick-start)
  - [Required](#required)
- - [What's included](What-is-included)
+ - [What's included](What's-included)
  - [Documentation](#documentation)
  - [How to contribute](#how-to-contribute)
  - [Community](#community)
