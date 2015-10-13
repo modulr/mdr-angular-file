@@ -1,11 +1,14 @@
 {
-  "name": "upload",
+  "name": "angular-file",
   "version": "1.0.0",
   "authors": [
     "Alfredo Barron <alfredobarronc@gmail.com>"
   ],
   "description": "Angular + Bootstrap File Upload Drag and Drop",
-  "main": "app.js",
+  "main": [
+    "dist/file.css",
+    "dist/file.js"
+  ],
   "keywords": [
     "angular",
     "bootstrap",
