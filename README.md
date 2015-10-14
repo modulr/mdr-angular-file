@@ -29,10 +29,11 @@ Several quick start options are available:
 
 ```
 angular-file/
-  ├── file.css
-  ├── file.min.css
-  ├── file.js
-  └── file.min.js
+  dist/
+    ├── angular-file.css
+    ├── angular-file.min.css
+    ├── angular-file.js
+    └── angular-file.min.js
 ```
 
 ##Documentation
@@ -63,4 +64,3 @@ If you want to making changes Better avoid working directly on the master branch
 ## Copyright and license
 
 Code and documentation (c) Copyright 2015 Modulr. Code published under [license MIT](https://github.com/Modulr/angular-file/blob/dev/LICENSE)
-
