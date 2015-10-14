@@ -1,16 +1,21 @@
-# angular-file
-Angular + Bootstrap File Upload Drag and Drop
+# Angular File
+Angular File is an AngularJS UI component that can upload files via XMLHttpRequest, provides drag & drop support.
 
 ##Table of contents
 
+ - [Required](#requirements)
  - [Quick start](#quick-start)
- - [Required](#required)
  - [What's included](What's-included)
  - [Documentation](#documentation)
  - [How to contribute](#how-to-contribute)
  - [Community](#community)
  - [Creators](#creators)
  - [Copyright and license](#copyright-and-license)
+
+##Requirements
+
+- [Angularjs](https://angularjs.org/)
+- [Bootstrap 3.](http://getbootstrap.com/)
 
 ##Quick start
 
@@ -20,10 +25,6 @@ Several quick start options are available:
 - Clone the repo: `git clone https://github.com/Modulr/angular-file.git`.
 - Install with [Bower](http://bower.io/): `bower install angular-file`.
 - Install with [npm](https://www.npmjs.com): `npm install angular-file`.
-
-##Required
-
-angular-file component requires the [Angular 1](https://angularjs.org/) and [Bootstrap 3.](http://getbootstrap.com/) frameworks.
 
 ##What's included
 
@@ -37,7 +38,7 @@ angular-file/
 
 ##Documentation
 
-
+Documentation can check the [https://github.com/Modulr/angular-file/wiki](https://github.com/Modulr/angular-file/wiki)
 
 ##How to contribute
 
@@ -61,5 +62,6 @@ If you want to making changes Better avoid working directly on the master branch
 [@AlfredoBarronC](https://twitter.com/AlfredoBarronC)
 
 ## Copyright and license
+
 Code and documentation (c) Copyright 2015 Modulr. Code published under [license MIT](https://github.com/Modulr/angular-file/blob/dev/LICENSE)
 
