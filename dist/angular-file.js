@@ -56,7 +56,6 @@
     };
 
 
-
     /** Upload
     * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     */
@@ -100,7 +99,10 @@
       xhr.open('POST', $scope.url, true);
       // Se agregan los headers al xhr
       if ($scope.headers !== undefined) {
-        xhr.setRequestHeader($scope.headers[0], $scope.headers[1]);
+        var headers = $scope.headers;
+        for (var header in headers) {
+          xhr.setRequestHeader(header, headers[header]);
+        }
       }
       xhr.addEventListener("loadstart", loadStart, false);
       xhr.addEventListener("progress", updateProgress, false);
@@ -241,7 +243,7 @@
       var icon = false;
 
       // Se decide si se va mostrar el preview o un icono
-      if (file.type !== 'image/jpeg' && file.type !== 'image/png') {
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/svg+xml' && file.type !== 'image/gif') {
         icon = true;
       }
 
@@ -349,11 +351,11 @@
     * use
     * @param url {string}
     * @param model {object}
-    * @param headers {array}
-    * @param size {number} max size in MB to file
-    * @param limit {number} max number files
-    * @param formats {array, string} extensions permited to file
-    * @param text {string} Text into drag and drop or button
+    * @param headers {object}
+    * @param size {number} Max size in MB to file.
+    * @param limit {number} Max number files to upload.
+    * @param formats {array, string} Extensions permitted to the file.
+    * @param text {string} Text into area drag and drop.
     * @param multiple {boolean}
     * @param disabled {boolean}
     * <mdr-file url="file/photo" mode="modelo" headers="[token,'shhh']" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="false" text="Arrastra o haz clic aquí"></mdr-file>
