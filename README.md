@@ -29,10 +29,11 @@ Several quick start options are available:
 
 ```
 angular-file/
-  ├── angular-file.css
-  ├── angular-file.min.css
-  ├── angular-file.js
-  └── angular-file.min.js
+  dist/
+    ├── angular-file.css
+    ├── angular-file.min.css
+    ├── angular-file.js
+    └── angular-file.min.js
 ```
 
 ##Documentation
