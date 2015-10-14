@@ -1,5 +1,5 @@
 # Angular File
-Angular File is an AngularJS UI component that can upload files via XMLHttpRequest, provides drag & drop support.
+Angular File is an Angularjs component that can upload files via XMLHttpRequest, provides drag & drop support.
 
 ##Table of contents
 
