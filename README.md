@@ -1,5 +1,8 @@
 # Angular File
-Angular File is an Angularjs component that can upload files via XMLHttpRequest, provides drag & drop support. [Demo](http://modulr.io/components/angular-file/)
+Angular File is an Angularjs component that can upload files via XMLHttpRequest, provides drag & drop support.
+
+- [Demo](http://modulr.io/components/angular-file/)
+- Backend and Frontend [examples](https://github.com/Modulr/angular-file/tree/master/examples)
 
 ![](http://modulr.io/img/preview/angular-file.png)
 
@@ -40,20 +43,68 @@ angular-file/
 
 ##Documentation
 
-Documentation can check the [https://github.com/Modulr/angular-file/wiki](https://github.com/Modulr/angular-file/wiki)
+####Usage
+
+######Load CSS
+
+```html
+<link href="angular-file/dist/angular-file.min.css">
+```
+
+######Load JS
+
+```html
+<script href="angular-file/dist/angular-file.min.js"></script>
+```
+
+######Code
+
+```js
+angular.module('MyApp', ['mdr.file'])
+```
+
+######HTML View or Templates
+
+> Basic Directive
+
+```html
+<mdr-file url="upload.php"></mdr-file>
+```
+
+> Complete Directive (All attributes)
+
+```html
+<mdr-file url="upload.php" model="miModelo" headers="{token:'shhh'}" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="false" text="Arrastra o haz clic aquí"></mdr-file>
+```
+
+####API
+
+######Attributes
+
+Attribute | Type | Description
+--- | --- | ---
+url | `string` | *Is the path on the server where the file will be uploaded.* **Note:** *The parameter received on the server is* `file`
+model | `object` | *It is the scope model where uploaded files will be saved.*
+headers | `object` | *Send headers to the server.*
+size | `number` | *Max size in MB to file.*
+limit | `number` | *Max number files to upload.*
+formats | `string,array` | *Extensions permitted to the file.*
+text | `string` | *Text into area drag and drop.*
+multiple | `boolean` | *If required to upload a single file this attribute is marked as false, the default value is true.*
+disabled | `boolean` | *If required disable the component is marked as true.*
 
 ##How to contribute
 
 All contributions are very welcome, We love it. There are several ways to help out:
 
-- Create an issue on GitHub, if you have found a bug
+- Create an [issue](https://github.com/Modulr/angular-file/issues) on GitHub, if you have found a bug
 - Write test cases for open bug issues
 - Write patches for open bug/feature issues, preferably with test cases included
 - Contribute to the documentation
 
 There are a few guidelines that we need contributors to follow so that we have a chance of keeping on top of things.
 
-If you want to making changes Better avoid working directly on the master branch, to avoid conflicts if you pull in updates from origin, so, if make your contribution under the branch [`dev`](https://github.com/Modulr/angular-file/tree/dev).
+If you want to making changes Better avoid working directly on the `master` branch, to avoid conflicts if you pull in updates from origin, so, if make your contribution under the branch [`dev`](https://github.com/Modulr/angular-file/tree/dev).
 
 ##Community
 

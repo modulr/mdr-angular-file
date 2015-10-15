@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular File</title>
+
+    <!-- CSS Dependencies -->
+  	<link href="bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="angular-file.css">
+
+  </head>
+  <!-- Add Angular module app-->
+  <body ng-app="app">
+
+    <h2>Angular File</h2>
+    <p>File Upload Drag and Drop</p>
+    <!-- Add directive mdr-file -->
+    <mdr-file url="php/upload.php" model="file" size="5" formats="'jpg,png,svg,gif'" limit="10"></mdr-file>
+
+    <!-- JS Dependencies -->
+  	<script src="jquery.js"></script>
+  	<script src="bootstrap.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular-file.js"></script>
+
+    <script>
+      (function(){
+        'use strict';
+        // Add Angular module mdr.file
+        angular.module('app', ['mdr.file']);
+      }());
+    </script>
+  </body>
+</html>
