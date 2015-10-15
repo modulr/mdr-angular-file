@@ -1,7 +1,7 @@
 {
   "name": "angular-file",
   "version": "1.0.0",
-  "description": "Angular + Bootstrap File Upload Drag and Drop",
+  "description": "File Upload Drag and Drop",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
