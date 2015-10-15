@@ -1,13 +1,13 @@
 {
   "name": "angular-file",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "Alfredo Barron <alfredobarronc@gmail.com>"
   ],
   "description": "File Upload Drag and Drop",
   "main": [
-    "dist/file.css",
-    "dist/file.js"
+    "dist/angule-file.css",
+    "dist/angule-file.js"
   ],
   "keywords": [
     "angular",
@@ -20,11 +20,8 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "src",
+    "examples"
   ],
   "dependencies": {
     "bootstrap": "~3.3.5",
