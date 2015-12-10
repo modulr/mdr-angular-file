@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "description": "File Upload Drag and Drop",
   "main": [
-    "dist/angule-file.css",
-    "dist/angule-file.js"
+    "dist/angular-file.css",
+    "dist/angular-file.js"
   ],
   "authors": [
     "Alfredo Barron <alfredobarronc@gmail.com>"
