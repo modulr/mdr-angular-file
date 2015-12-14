@@ -1,6 +1,6 @@
 {
-  "name": "angular-file",
-  "version": "1.0.1",
+  "name": "angular-mdr-file",
+  "version": "1.0.2",
   "description": "File Upload Drag and Drop",
   "main": "index.js",
   "scripts": {
