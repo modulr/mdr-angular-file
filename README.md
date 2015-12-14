@@ -35,10 +35,10 @@ Several quick start options are available:
 ```
 angular-file/
   dist/
-    ├── angular-file.css
-    ├── angular-file.min.css
-    ├── angular-file.js
-    └── angular-file.min.js
+    ├── mdr-file.css
+    ├── mdr-file.min.css
+    ├── mdr-file.js
+    └── mdr-file.min.js
 ```
 
 ##Documentation
@@ -48,13 +48,13 @@ angular-file/
 ######Load CSS
 
 ```html
-<link href="angular-file/dist/angular-file.min.css">
+<link href="angular-file/dist/mdr-file.min.css">
 ```
 
 ######Load JS
 
 ```html
-<script href="angular-file/dist/angular-file.min.js"></script>
+<script href="angular-file/dist/mdr-file.min.js"></script>
 ```
 
 ######Code
@@ -74,7 +74,7 @@ angular.module('MyApp', ['mdr.file'])
 > Complete Directive (All attributes)
 
 ```html
-<mdr-file url="upload.php" model="miModelo" headers="{token:'shhh'}" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="false" text="Arrastra o haz clic aquí"></mdr-file>
+<mdr-file url="upload.php" model="model" headers="{token:'shhh'}" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="false" text="Arrastra o haz clic aquí"></mdr-file>
 ```
 
 ####API
