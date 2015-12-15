@@ -27,8 +27,8 @@ Several quick start options are available:
 
 - [Download the latest release](https://github.com/Modulr/angular-file/archive/master.zip)
 - Clone the repo: `git clone https://github.com/Modulr/angular-file.git`.
-- Install with [Bower](http://bower.io/): `bower install angular-file`.
-- Install with [npm](https://www.npmjs.com): `npm install angular-file`.
+- Install with [Bower](http://bower.io/): `bower install mdr-angular-file`.
+- Install with [npm](https://www.npmjs.com): `npm install mdr-angular-file`.
 
 ##What's included
 
