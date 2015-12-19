@@ -74,7 +74,7 @@ angular.module('MyApp', ['mdr.file'])
 > Complete Directive (All attributes)
 
 ```html
-<mdr-file url="upload.php" model="model" headers="{token:'shhh'}" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="false" text="Arrastra o haz clic aquí"></mdr-file>
+<mdr-file url="upload.php" model="model" data="{hola:'mundo'}" headers="{token:'shhh'}" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="true" text="Arrastra o haz clic aquí"></mdr-file>
 ```
 
 ####API
@@ -85,13 +85,14 @@ Attribute | Type | Description
 --- | --- | ---
 url | `string` | *Is the path on the server where the file will be uploaded.* **Note:** *The parameter received on the server is* `file`
 model | `object` | *It is the scope model where uploaded files will be saved.*
+data | `object` | *Data to be sent to the server.*
 headers | `object` | *Send headers to the server.*
 size | `number` | *Max size in MB to file.*
 limit | `number` | *Max number files to upload.*
 formats | `string,array` | *Extensions permitted to the file.*
-text | `string` | *Text into area drag and drop.*
-multiple | `boolean` | *If required to upload a single file this attribute is marked as false, the default value is true.*
+multiple | `boolean` | *If required to upload a multiple file is marked as true.*
 disabled | `boolean` | *If required disable the component is marked as true.*
+text | `string` | *Text into area drag and drop.*
 
 ##How to contribute
 

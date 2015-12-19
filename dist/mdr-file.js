@@ -3,6 +3,62 @@
 
   angular
   .module('mdr.file', [])
+  .directive('mdrFile', ['$compile', function($compile){
+    /**
+    * @param url {string}
+    * @param model {object}
+    * @param data {object}
+    * @param headers {object}
+    * @param size {number}
+    * @param limit {number}
+    * @param formats {array, string}
+    * @param text {string}
+    * @param multiple {boolean}
+    * @param disabled {boolean}
+    */
+
+    var linker = function(scope, element, attrs)
+    {
+      // Se remueve el attr multiple
+      if (attrs.multiple) {
+        element.find('input').attr('multiple', 'multiple');
+      }
+
+      if (attrs.disabled) {
+       element.find('.mdr-file-dad').addClass('disabled');
+      }
+
+      $compile(element.contents())(scope);
+    };
+
+    return {
+      restrict: 'E',
+      link: linker,
+      controller: 'FileCtrl',
+      scope: {
+        url: '@',
+        headers: '=',
+        model: '=',
+        data: '=',
+        size: '=',
+        limit: '=',
+        formats: '=',
+        disabled: '=',
+        text: '@'
+      },
+      template:
+      '<div class="mdr-file-dad" id="fileId_{{$id}}">' +
+        '<div class="mdr-file-dad-text">' +
+          '<h3><span class="glyphicon glyphicon-cloud-upload"></span>{{text}}</h3>' +
+        '</div>' +
+        '<input type="file" name="file" onchange="angular.element(this).scope().upload(this)" ng-model="model" ng-disabled="disabled">' +
+        '<div class="row mdr-file-dad-content">'+
+          '<button type="button" class="close" aria-label="Close" ng-click="clearContent()"><span aria-hidden="true">&times;</span></button>' +
+        '</div>' +
+      '</div>'
+    };
+
+  }])
   .controller('FileCtrl', ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
 
     // OPTIONS
@@ -12,8 +68,6 @@
       complete: 0,
       invalid: 0
     };
-
-
 
     /**  Drag and Drop
     |- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -75,6 +129,14 @@
         complete: 0,
         invalid: 0
       };
+      // SE INSTANCIA EL FORM DATA
+      var formData = new FormData();
+
+      if ($scope.data !== undefined) {
+        for (var ke in $scope.data) {
+          formData.append(ke, $scope.data[ke]);
+        }
+      }
       // Si es multiple
       if( validMultiple(files) ) {
         // Si no exede el limite de archivos
@@ -82,7 +144,7 @@
           // Se envian los archivos
           $.each(files, function(k, v){
             // Se envia el archivo
-            uploadFile(k,v);
+            uploadFile(k,v,formData);
           });
         }
       }
@@ -91,7 +153,7 @@
 
 
     // Se sube file por file
-    function uploadFile(k,v)
+    function uploadFile(k,v,formData)
     {
       // SE INSTANCIA EL XHR
       var xhr = new XMLHttpRequest();
@@ -110,11 +172,6 @@
       xhr.addEventListener("error", transferFailed, false);
       xhr.addEventListener("abort", transferCanceled, false);
 
-      // SE INSTANCIA EL FORM DATA
-      var formData = new FormData();
-      // Se agrega el file en el formData
-      formData.append('file', v);
-
       // SE INSTANCIA EL FILEREAD
       // Lee los atributos del file
       var reader = new FileReader();
@@ -128,13 +185,14 @@
 
         // Se crea el preview
         createPreview(v, k, e.target.result, validFile.icon, validFile.messages);
-
         // Se valida el tipo y el tamaño
         if (validFile.resp) {
           // Se envia el formData al server
           $scope.$apply(function () {
             $scope.count.send++;
           });
+          // Se agrega el file en el formData
+          formData.append('file', v);
           xhr.send(formData);
         } else {
           $scope.$apply(function () {
@@ -159,7 +217,7 @@
       function transferComplete (e) {
         $scope.$apply(function () {
           $scope.count.complete++;
-          $scope.model = xhr.response;
+          $scope.model = JSON.parse(xhr.response);
         });
         $('#fileId_'+ $scope.$id +' .mdr-file-dad-content .preview-'+ k).fadeOut('slow', function() { $(this).remove(); });
       }
@@ -342,64 +400,6 @@
         $("#fileId_"+ $scope.$id +' .mdr-file-dad-content button').fadeIn('slow');
       }
     });
-
-
-  }])
-
-  .directive('mdrFile', ['$compile', function($compile){
-    /**
-    * use
-    * @param url {string}
-    * @param model {object}
-    * @param headers {object}
-    * @param size {number} Max size in MB to file.
-    * @param limit {number} Max number files to upload.
-    * @param formats {array, string} Extensions permitted to the file.
-    * @param text {string} Text into area drag and drop.
-    * @param multiple {boolean}
-    * @param disabled {boolean}
-    * <mdr-file url="file/photo" mode="modelo" headers="[token,'shhh']" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="false" text="Arrastra o haz clic aquí"></mdr-file>
-    */
-
-    var linker = function(scope, element, attrs)
-    {
-      // Se remueve el attr multiple
-      if (attrs.multiple !== undefined || attrs.multiple) {
-        element.find('input').removeAttr('multiple');
-      }
-
-      if (attrs.disabled) {
-       element.find('.mdr-file-dad').addClass('disabled');
-      }
-
-      $compile(element.contents())(scope);
-    };
-
-    return {
-      restrict: 'E',
-      controller: 'FileCtrl',
-      link: linker,
-      scope: {
-        url: '@',
-        headers: '=',
-        model: '=',
-        size: '=',
-        limit: '=',
-        formats: '=',
-        disabled: '=',
-        text: '@'
-      },
-      template:
-      '<div class="mdr-file-dad" id="fileId_{{$id}}">' +
-        '<div class="mdr-file-dad-text">' +
-          '<h3><span class="glyphicon glyphicon-cloud-upload"></span>{{text}}</h3>' +
-        '</div>' +
-        '<input type="file" name="file" onchange="angular.element(this).scope().upload(this)" ng-model="model" ng-disabled="disabled" multiple>' +
-        '<div class="row mdr-file-dad-content">'+
-          '<button type="button" class="close" aria-label="Close" ng-click="clearContent()"><span aria-hidden="true">&times;</span></button>' +
-        '</div>' +
-      '</div>'
-    };
 
 
   }]);
