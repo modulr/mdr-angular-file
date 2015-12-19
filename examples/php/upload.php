@@ -15,4 +15,4 @@ if ($_FILES["file"]["error"] == UPLOAD_ERR_OK) {
 }
 
 // Response with object file
-echo json_encode($_FILES['file']);
+echo json_encode([$_FILES['file'],$_POST]);

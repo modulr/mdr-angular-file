@@ -1,6 +1,6 @@
 {
   "name": "mdr-angular-file",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "File Upload Drag and Drop",
   "main": [
     "dist/mdr-file.css",
