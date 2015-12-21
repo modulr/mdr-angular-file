@@ -1,10 +1,10 @@
 # Angular File
 Angular File is an Angularjs component that can upload files via XMLHttpRequest, provides drag & drop support.
 
-- [Demo](http://modulr.io/components/angular-file/)
-- Backend and Frontend [examples](https://github.com/Modulr/angular-file/tree/master/examples)
+- [Demo](http://modulr.io/components/mdr-angular-file/)
+- Backend and Frontend [examples](https://github.com/Modulr/mdr-angular-file/tree/master/examples)
 
-![](http://modulr.io/img/preview/angular-file.png)
+![](http://modulr.io/img/preview/mdr-angular-file.png)
 
 ##Features
 
@@ -25,15 +25,15 @@ Angular File is an Angularjs component that can upload files via XMLHttpRequest,
 
 Several quick start options are available:
 
-- [Download the latest release](https://github.com/Modulr/angular-file/archive/master.zip)
-- Clone the repo: `git clone https://github.com/Modulr/angular-file.git`.
+- [Download the latest release](https://github.com/Modulr/mdr-angular-file/archive/master.zip)
+- Clone the repo: `git clone https://github.com/Modulr/mdr-angular-file.git`.
 - Install with [Bower](http://bower.io/): `bower install mdr-angular-file`.
 - Install with [npm](https://www.npmjs.com): `npm install mdr-angular-file`.
 
 ##What's included
 
 ```
-angular-file/
+mdr-angular-file/
   dist/
     ├── mdr-file.css
     ├── mdr-file.min.css
@@ -48,13 +48,13 @@ angular-file/
 ######Load CSS
 
 ```html
-<link href="angular-file/dist/mdr-file.min.css">
+<link href="mdr-angular-file/dist/mdr-file.min.css">
 ```
 
 ######Load JS
 
 ```html
-<script href="angular-file/dist/mdr-file.min.js"></script>
+<script href="mdr-angular-file/dist/mdr-file.min.js"></script>
 ```
 
 ######Code
@@ -98,14 +98,14 @@ text | `string` | *Text into area drag and drop.*
 
 All contributions are very welcome, We love it. There are several ways to help out:
 
-- Create an [issue](https://github.com/Modulr/angular-file/issues) on GitHub, if you have found a bug
+- Create an [issue](https://github.com/Modulr/mdr-angular-file/issues) on GitHub, if you have found a bug
 - Write test cases for open bug issues
 - Write patches for open bug/feature issues, preferably with test cases included
 - Contribute to the documentation
 
 There are a few guidelines that we need contributors to follow so that we have a chance of keeping on top of things.
 
-If you want to making changes Better avoid working directly on the `master` branch, to avoid conflicts if you pull in updates from origin, so, if make your contribution under the branch [`dev`](https://github.com/Modulr/angular-file/tree/dev), into folder `src/`.
+If you want to making changes Better avoid working directly on the `master` branch, to avoid conflicts if you pull in updates from origin, so, if make your contribution under the branch [`dev`](https://github.com/Modulr/mdr-angular-file/tree/dev), into folder `src/`.
 
 ##Community
 
@@ -117,4 +117,4 @@ If you want to making changes Better avoid working directly on the `master` bran
 
 ## Copyright and license
 
-Code and documentation (c) Copyright 2015 Modulr. Code published under [license MIT](https://github.com/Modulr/angular-file/blob/dev/LICENSE)
+Code and documentation (c) Copyright 2015 Modulr. Code published under [license MIT](https://github.com/Modulr/mdr-angular-file/blob/master/LICENSE)
