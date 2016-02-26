@@ -84,7 +84,7 @@ angular.module('MyApp', ['mdr.file'])
 Attribute | Type | Description
 --- | --- | ---
 url | `string` | *Is the path on the server where the file will be uploaded.* **Note:** *The parameter received on the server is* `file`
-model | `object` | *It is the scope model where uploaded files will be saved.*
+model | `object` | *It is the scope model where will be received to response the server.*
 data | `object` | *Data to be sent to the server.*
 headers | `object` | *Send headers to the server.*
 size | `number` | *Max size in MB to file.*

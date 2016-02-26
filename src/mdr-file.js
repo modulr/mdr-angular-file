@@ -19,12 +19,11 @@
 
     var linker = function(scope, element, attrs)
     {
-      // Se remueve el attr multiple
-      if (attrs.multiple) {
+      if (scope.multiple) {
         element.find('input').attr('multiple', 'multiple');
       }
 
-      if (attrs.disabled) {
+      if (scope.disabled) {
        element.find('.mdr-file-dad').addClass('disabled');
       }
 
@@ -44,6 +43,7 @@
         limit: '=',
         formats: '=',
         disabled: '=',
+        multiple: '=',
         text: '@'
       },
       template:
@@ -66,7 +66,8 @@
     $scope.count = {
       send: 0,
       complete: 0,
-      invalid: 0
+      invalid: 0,
+      error: 0
     };
 
     /**  Drag and Drop
@@ -103,16 +104,15 @@
       uploadFiles(files);
     });
 
+    /** Events
+    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    */
     $scope.clearContent = function()
     {
       $('#fileId_'+ $scope.$id +' .mdr-file-dad-content div').fadeOut('slow', function() { $(this).remove(); });
       $("#fileId_"+ $scope.$id +' .mdr-file-dad-content button').fadeOut('slow');
     };
 
-
-    /** Upload
-    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    */
     $scope.upload = function(element)
     {
       // Se obtienen los archivos
@@ -121,22 +121,18 @@
       uploadFiles(files);
     };
 
-
+    /** Methods
+    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    */
     function uploadFiles(files)
     {
       $scope.count = {
         send: 0,
         complete: 0,
-        invalid: 0
+        invalid: 0,
+        error: 0
       };
-      // SE INSTANCIA EL FORM DATA
-      var formData = new FormData();
 
-      if ($scope.data !== undefined) {
-        for (var ke in $scope.data) {
-          formData.append(ke, $scope.data[ke]);
-        }
-      }
       // Si es multiple
       if( validMultiple(files) ) {
         // Si no exede el limite de archivos
@@ -144,16 +140,15 @@
           // Se envian los archivos
           $.each(files, function(k, v){
             // Se envia el archivo
-            uploadFile(k,v,formData);
+            uploadFile(k,v);
           });
         }
       }
       $('#fileId_'+ $scope.$id +' input').replaceWith($('#fileId_'+ $scope.$id +' input').val('').clone(true));
     }
 
-
     // Se sube file por file
-    function uploadFile(k,v,formData)
+    function uploadFile(k,v)
     {
       // SE INSTANCIA EL XHR
       var xhr = new XMLHttpRequest();
@@ -166,12 +161,6 @@
           xhr.setRequestHeader(header, headers[header]);
         }
       }
-      xhr.addEventListener("loadstart", loadStart, false);
-      xhr.addEventListener("progress", updateProgress, false);
-      xhr.addEventListener("load", transferComplete, false);
-      xhr.addEventListener("error", transferFailed, false);
-      xhr.addEventListener("abort", transferCanceled, false);
-
       // SE INSTANCIA EL FILEREAD
       // Lee los atributos del file
       var reader = new FileReader();
@@ -179,10 +168,8 @@
       reader.readAsDataURL(v);
       // Cuando se carga el file
       reader.onload = function (e) {
-
         // Se valida que el archivo sea valido
         var validFile = isValid(v);
-
         // Se crea el preview
         createPreview(v, k, e.target.result, validFile.icon, validFile.messages);
         // Se valida el tipo y el tamaño
@@ -191,6 +178,14 @@
           $scope.$apply(function () {
             $scope.count.send++;
           });
+          // SE INSTANCIA EL FORM DATA
+          var formData = new FormData();
+          // Se agrega el modelo data al formData
+          if ($scope.data !== undefined) {
+            for (var ke in $scope.data) {
+              formData.append(ke, $scope.data[ke]);
+            }
+          }
           // Se agrega el file en el formData
           formData.append('file', v);
           xhr.send(formData);
@@ -201,9 +196,12 @@
           // Se aborta el envio de formData al server
           xhr.abort();
         }
-
       };
-
+      xhr.addEventListener("loadstart", loadStart, false);
+      xhr.addEventListener("progress", updateProgress, false);
+      xhr.addEventListener("load", transferComplete, false);
+      xhr.addEventListener("error", transferFailed, false);
+      xhr.addEventListener("abort", transferCanceled, false);
       // Caundo inicia la carga del archivo
       function loadStart(){
         //console.log('Load start');
@@ -217,9 +215,18 @@
       function transferComplete (e) {
         $scope.$apply(function () {
           $scope.count.complete++;
-          $scope.model = JSON.parse(xhr.response);
         });
-        $('#fileId_'+ $scope.$id +' .mdr-file-dad-content .preview-'+ k).fadeOut('slow', function() { $(this).remove(); });
+        if (xhr.status == 200) {
+          $scope.$apply(function () {
+            $scope.model = JSON.parse(xhr.response);
+          });
+          $('#fileId_'+ $scope.$id +' .mdr-file-dad-content .preview-'+ k).fadeOut('slow', function() { $(this).remove(); });
+        } else {
+          $scope.$apply(function () {
+            $scope.count.error++;
+          });
+          console.log("Server error "+xhr.status+", an error occurred while transferring the file.");
+        }
       }
       function transferFailed (e) {
         console.log("An error occurred while transferring the file.");
@@ -251,7 +258,8 @@
             '<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>' +
           '</div>' +
           '<div class="caption">' +
-            '<p>'+ v.name +'<span class="text-muted"> / '+ humanSize +'</span></p>' +
+            '<p>'+ v.name +'</p>' +
+            '<p><span class="text-muted">'+ humanSize +'</span></p>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -298,11 +306,11 @@
     function validExt(file)
     {
       // Img previe or icon
-      var icon = false;
+      var icon = true;
 
       // Se decide si se va mostrar el preview o un icono
-      if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/svg+xml' && file.type !== 'image/gif') {
-        icon = true;
+      if (file.type == 'image/jpeg' || file.type == 'image/png' || file.type == 'image/svg+xml' || file.type == 'image/gif') {
+        icon = false;
       }
 
       if ($scope.formats === undefined) {
@@ -372,11 +380,15 @@
     // Se valida si el imput es multiple
     function validMultiple(files)
     {
-      if($attrs.multiple && (files.length > 1)){
-        alert('One file for time');
-        return false;
+      if (files.length == 1) {
+        return true;
+      } else if (files.length > 1) {
+        if ($scope.multiple) {
+          return true;
+        }
       }
-      return true;
+      alert('One file for time');
+      return false;
     }
 
     // Convierte los bits en 'Bytes', 'KB', 'MB', 'GB', 'TB'
@@ -396,7 +408,7 @@
     */
     $scope.$watchCollection('count', function(newValue, oldValue)
     {
-      if (newValue.send == newValue.complete && newValue.invalid > 0) {
+      if (newValue.send == newValue.complete && (newValue.invalid > 0 || newValue.error > 0)) {
         $("#fileId_"+ $scope.$id +' .mdr-file-dad-content button').fadeIn('slow');
       }
     });
