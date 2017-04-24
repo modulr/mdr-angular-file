@@ -6,7 +6,7 @@ Angular File is an Angularjs component that can upload files via XMLHttpRequest,
 
 ![](http://modulr.io/img/preview/mdr-angular-file.png)
 
-##Features
+## Features
 
 - Uses the native Angularjs scope for data binding
 - Drag & Drop
@@ -16,12 +16,12 @@ Angular File is an Angularjs component that can upload files via XMLHttpRequest,
 - Large files support
 
 
-##Requirements
+## Requirements
 
 - [Angularjs](https://angularjs.org/)
 - [Bootstrap 3.](http://getbootstrap.com/)
 
-##Quick start
+## Quick start
 
 Several quick start options are available:
 
@@ -30,7 +30,7 @@ Several quick start options are available:
 - Install with [Bower](http://bower.io/): `bower install mdr-angular-file`.
 - Install with [npm](https://www.npmjs.com): `npm install mdr-angular-file`.
 
-##What's included
+## What's included
 
 ```
 mdr-angular-file/
@@ -41,29 +41,29 @@ mdr-angular-file/
     └── mdr-file.min.js
 ```
 
-##Documentation
+## Documentation
 
-####Usage
+#### Usage
 
-######Load CSS
+###### Load CSS
 
 ```html
 <link href="mdr-angular-file/dist/mdr-file.min.css">
 ```
 
-######Load JS
+###### Load JS
 
 ```html
 <script href="mdr-angular-file/dist/mdr-file.min.js"></script>
 ```
 
-######Code
+###### Code
 
 ```js
 angular.module('MyApp', ['mdr.file'])
 ```
 
-######HTML View or Templates
+###### HTML View or Templates
 
 > Basic Directive
 
@@ -77,9 +77,9 @@ angular.module('MyApp', ['mdr.file'])
 <mdr-file url="upload.php" model="model" data="{hola:'mundo'}" headers="{token:'shhh'}" size="5" limit="10" formats="'jpg,png,gif'" disabled="true" multiple="true" text="Arrastra o haz clic aquí"></mdr-file>
 ```
 
-####API
+#### API
 
-######Attributes
+###### Attributes
 
 Attribute | Type | Description
 --- | --- | ---
@@ -94,7 +94,7 @@ multiple | `boolean` | *If required to upload a multiple file is marked as true.
 disabled | `boolean` | *If required disable the component is marked as true.*
 text | `string` | *Text into area drag and drop.*
 
-##How to contribute
+## How to contribute
 
 All contributions are very welcome, We love it. There are several ways to help out:
 
@@ -107,11 +107,11 @@ There are a few guidelines that we need contributors to follow so that we have a
 
 If you want to making changes Better avoid working directly on the `master` branch, to avoid conflicts if you pull in updates from origin, so, if make your contribution under the branch [`dev`](https://github.com/Modulr/mdr-angular-file/tree/dev), into folder `src/`.
 
-##Community
+## Community
 
 - Implementation help may be found at Stack Overflow (tagged [`mdr-file`](http://stackoverflow.com/questions/tagged/mdr-file)).
 
-##Creators
+## Creators
 
 [@AlfredoBarronC](https://twitter.com/AlfredoBarronC)
 
